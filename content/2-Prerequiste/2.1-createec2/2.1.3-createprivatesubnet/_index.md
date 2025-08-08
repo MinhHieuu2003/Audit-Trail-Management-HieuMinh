@@ -13,7 +13,7 @@ pre : " <b> 2.1.3 </b> "
 ![VPC](/images/2.prerequisite/017.png)
 
 2. Configure **Internet Gateways**.
-  + In the Name tag, enter **AuditDemo-IGW**.
+  + In the Name tag, enter `AuditDemo-IGW`.
   + Click Create internet gateway.
 
 Confirm successful creation of Internet Gateway
@@ -24,10 +24,12 @@ Confirm successful creation of Internet Gateway
 Connect to VPC  
 4. Attach Internet Gateway to VPC
   + Click Actions
-  + Select Attach to **AuditDemo-VPC**
+  + Select Attach to `AuditDemo-VPC`
   + Select VPC ASG from the list (VPC ID will be filled automatically)
   + Click Attach internet gateway
 ![VPC](/images/2.prerequisite/019.png)
+
+![VPC](/images/2.prerequisite/0191.png)
 
 #### Create Route Tables
 
@@ -38,14 +40,16 @@ Create Route Table in Amazon VPC
 ![VPC](/images/2.prerequisite/020.png)
 
 2. Configure Route Table
-  + Name: **AuditDemo-RT**
-  + VPC: **AuditDemo-VPC**
+  + Name: `AuditDemo-RT`.
+  + VPC: `AuditDemo-VPC`.
   + Click Create route table
 ![VPC](/images/2.prerequisite/021.png)
 
 3. In the Route Table
   + Click Edit Routes → Add route
-  + Destination: **0.0.0.0/0**
-  + Target: **Internet Gateway** -> igw-**(AuditDemo-IGW)**
+  + Destination: `0.0.0.0/0`.
+  + Target: **Internet Gateway** -> `igw-(AuditDemo-IGW)`
   + Click Save routes
 ![VPC](/images/2.prerequisite/022.png)
+
+![VPC](/images/2.prerequisite/0221.png)

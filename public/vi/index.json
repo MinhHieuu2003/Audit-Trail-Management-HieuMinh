@@ -4,7 +4,7 @@
 	"title": "Audit Trail Management",
 	"tags": [],
 	"description": "",
-	"content": "Audit Trail Management Tổng quan Trong bài demo này, bạn sẽ tìm hiểu các khái niệm cơ bản và thực hành với Amazon System Manager - Quản lý Phiên. Bạn sẽ thực hành kết nối với cả máy chủ công cộng và riêng tư trong VPC, quản lý nhật ký phiên và hiểu cách đảm bảo khả năng kiểm toán và tuân thủ cho cơ sở hạ tầng của mình.\nNội dung Giới thiệu Các bước chuẩn bị Thiết lập Audit Automation Triển khai Immutable Logging với (AWS S3) Phân tích Trail với Amazon OpenSearch Service Compliance Reporting với Athena Investigation Tools với Amazon QuickSight Monitoring \u0026amp; Alerts qua Amazon CloudWatch Operational Procedures [Legal Coordination với AWS Artifact](10-AWS Artifact/) [clean resource](11-Clean resource/) "
+	"content": "Audit Trail Management Tổng quan Trong bài demo này, bạn sẽ tìm hiểu các khái niệm cơ bản và thực hành với Amazon System Manager - Quản lý Phiên. Bạn sẽ thực hành kết nối với cả máy chủ công cộng và riêng tư trong VPC, quản lý nhật ký phiên và hiểu cách đảm bảo khả năng kiểm toán và tuân thủ cho cơ sở hạ tầng của mình.\nNội dung Giới thiệu Các bước chuẩn bị Thiết lập Audit Automation Triển khai Immutable Logging với (AWS S3) Phân tích Trail với Amazon OpenSearch Service Compliance Reporting với Athena Investigation Tools với Amazon QuickSight Monitoring \u0026amp; Alerts qua Amazon CloudWatch Operational Procedures Legal Coordination với AWS Artifact clean resource "
 },
 {
 	"uri": "//localhost:1313/vi/3-accessibilitytoinstances/3.1-public-instance/",
@@ -32,7 +32,7 @@
 	"title": "Tạo VPC và các thành phần mạng",
 	"tags": [],
 	"description": "",
-	"content": "Chuẩn bị AWS Free Tier Account Đăng ký tại https://aws.amazon.com/free, xác thực thông tin thẻ tín dụng.\nĐăng nhập Console, chọn Region (ví dụ: Asia Pacific (Singapore) ap-southeast-1) để giảm độ trễ.\nTổng quan kiến trúc sau khi các bạn hoàn tất bước này sẽ như sau:\nĐể tìm hiểu cách tạo các VPC với public/private subnet các bạn có thể tham khảo bài lab :\nLàm việc với Amazon VPC Nội dung Tạo VPC Tạo Public subnet Tạo Private subnet Tạo security group Tạo máy chủ Linux public Tạo máy chủ Windows private "
+	"content": "Chuẩn bị AWS Free Tier Account Đăng ký tại https://aws.amazon.com/free, xác thực thông tin thẻ tín dụng.\nĐăng nhập Console, chọn Region (ví dụ: Asia Pacific (Singapore) ap-southeast-1) để giảm độ trễ.\nTổng quan kiến trúc sau khi các bạn hoàn tất bước này sẽ như sau:\nĐể tìm hiểu cách tạo các VPC với public/private subnet các bạn có thể tham khảo bài lab :\nLàm việc với Amazon VPC Nội dung Tạo VPC Tạo Public subnet Tạo Internet Gateways Tạo Security group "
 },
 {
 	"uri": "//localhost:1313/vi/1-introduce/",
@@ -147,14 +147,14 @@
 	"content": "Operational Procedures Bảo đảm log của bạn được giữ đúng thời hạn (retention), có bản sao dự phòng (backup) và có quy trình xử lý khi có sự cố (SOP).\nCấu hình Log Retention Vào CloudWatch Logs\nAWS Console → CloudWatch → bên trái chọn Logs → Log groups. Chọn log group của Lambda audit Click vào /aws/lambda/AuditLoggerDemo. Click Actions → Edit retention. Tuỳ chọn ( ở đây em chọn 7 day) → Save. S3 Object Lock\nAWS Console → S3 → click vào bucket audit-demo-logs. Sang tab Properties → kéo xuống Object lock → click Edit Chọn Retention mode = Compliance (bất biến), Retention period = 10 days → Save. Backup \u0026amp; Recovery Tạo Backup vault\nConsole: AWS Backup → Backup vaults → Create backup vault → Name = AuditBackupVault. Tạo Backup plan\nConsole → AWS Backup → Backup plans → Create backup plan → Build a new plan. Plan name: AuditBackupPlan Frequency: Daily at 00:00 Retention: 7 days Click Create plan. Gán resource cho plan\nConsole: Chọn AuditBackupPlan → Assign resources → Resource type = S3 → ARN = arn:aws:s3:::audit-demo-logs → Assign. SOP xử lý sự cố Proof dữ liệu (S3 Object Lock)\nDùng CLI liệt kê version: aws s3api list-object-versions \u0026ndash;bucket audit-demo-logs \u0026ndash;prefix logs/\nKiểm tra xem có version nào bị xóa hay overwritten trái phép không. Rebuild dashboard QuickSight\nQuickSight → Datasets → chọn AuditLogsAthena → click Refresh → chờ SPICE import → Visualize để dashboard cập nhật dữ liệu mới.\nVới bước này, chúng ta đã thiết lập được retention, backup/recovery và quy trình xử lý sự cố cho hệ thống audit, đảm bảo nó luôn an toàn, có thể phục hồi và vận hành suôn sẻ.\n"
 },
 {
-	"uri": "//localhost:1313/vi/10-aws-artifact/",
+	"uri": "//localhost:1313/vi/10-awsartifact/",
 	"title": "Legal Coordination với AWS Artifact",
 	"tags": [],
 	"description": "",
 	"content": "AWS Artifact Thu thập các báo cáo compliance (như SOC 2, ISO 27001, GDPR) từ AWS Artifact để đối chiếu và chứng minh hệ thống audit của bạn đáp ứng tiêu chuẩn pháp lý.\nVào AWS Artifact AWS Console → Services → Security, Identity, \u0026amp; Compliance → Artifact. Trên thanh tab, chọn Reports. Tải về các báo cáo Trong tab Reports: Chọn SOC 2, ISO 27001 rồi Download (PDF). Lưu file PDF vào local folder của dự án. Đối chiếu yêu cầu (Gap Analysis) Mở file PDF SOC 2 Xác định yêu cầu về logging, monitoring, retention. Ghi lại mapping giữa tiêu chuẩn và tính năng triển khai. Tập hợp chứng cứ Audit Trail CloudWatch Logs Export S3 Version List Athena Query Results Snapshot QuickSight Dashboard Compliance PDFs Chuẩn bị nộp regulator Đóng gói file. Với bước này, chúng ta đã hoàn thiện vòng đời audit từ kỹ thuật (ghi log, bất biến, báo cáo, dashboard, cảnh báo, SOP) đến chứng cứ pháp lý.\n"
 },
 {
-	"uri": "//localhost:1313/vi/11-clean-resource/",
+	"uri": "//localhost:1313/vi/11-cleanresource/",
 	"title": "Clean Resources",
 	"tags": [],
 	"description": "",

@@ -15,8 +15,10 @@ pre : " <b> 2.1.1 </b> "
 ![VPC](/images/2.prerequisite/001-createvpc.png)
 
 2. Tại trang **Create VPC**.
-  + Tại mục **Name tag** điền **AuditDemo-VPC**.
-  + Tại mục **IPv4 CIDR** điền : **10.10.0.0/16**.
+  + Tại mục **Name tag** điền `AuditDemo-VPC`.
+  + Tại mục **IPv4 CIDR** điền : `10.10.0.0/16`.
   + Click **Create VPC**.
 
 ![VPC](/images/2.prerequisite/002.png)
+
+![VPC](/images/2.prerequisite/003.png)

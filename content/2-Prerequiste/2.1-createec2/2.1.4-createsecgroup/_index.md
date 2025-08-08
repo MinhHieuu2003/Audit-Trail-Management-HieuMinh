@@ -19,18 +19,19 @@ In this step, we will create the security groups used for our instances. As you 
 ![SG](/images/2.prerequisite/019-createsg.png)
 2. Click Create security group
 
-3. In the **Security group name** field, enter **AuditDemo-SG**.
-  + In the **Description** field, enter **AuditDemo**.
-  + In the **VPC** field, select **AuditDemo-VPC**.
+3. In the **Security group name** field, enter **`AuditDemo-SG`**.
+  + In the **Description** field, enter **`AuditDemo`**.
+  + In the **VPC** field, select **`AuditDemo-VPC`**.
 
 ![SG](/images/2.prerequisite/023.png)
 
 4. Set Inbound Rules:
   + SSH (TCP 22) source **My IP**.
-  + HTTPS (TCP 443) source **0.0.0.0/0**
-
+  + HTTPS (TCP 443) source **`0.0.0.0/0`**
+![SG](/images/2.prerequisite/0241.png)
 5. Outbound:
   + Keep the default All traffic
   + Click **Create security group**.
-![SG](/images/2.prerequisite/024.png)
+
+![SG](/images/2.prerequisite/221.png)
 This completes the creation of the necessary security groups for EC2 instances and the VPC Endpoint.

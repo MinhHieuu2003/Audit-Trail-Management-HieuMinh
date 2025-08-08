@@ -158,6 +158,19 @@
                 href="//localhost:1313/2-prerequiste/2.1-createec2/2.1.3-createprivatesubnet/"
                 />
   </url><url>
+    <loc>//localhost:1313/4-s3log/</loc>
+    <lastmod>2025-08-03T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/4-s3log/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/4-s3log/"
+                />
+  </url><url>
     <loc>//localhost:1313/2-prerequiste/2.1-createec2/2.1.4-createsecgroup/</loc>
     <lastmod>2025-07-28T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -169,19 +182,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="//localhost:1313/2-prerequiste/2.1-createec2/2.1.4-createsecgroup/"
-                />
-  </url><url>
-    <loc>//localhost:1313/4-s3log/</loc>
-    <lastmod>2025-07-10T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/4-s3log/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/4-s3log/"
                 />
   </url><url>
     <loc>//localhost:1313/5-portfwd/</loc>
@@ -249,30 +249,30 @@
                 href="//localhost:1313/9-operationalprocedures/"
                 />
   </url><url>
-    <loc>//localhost:1313/10-aws-artifact/</loc>
+    <loc>//localhost:1313/10-awsartifact/</loc>
     <lastmod>2025-08-06T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/10-aws-artifact/"
+                href="//localhost:1313/vi/10-awsartifact/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/10-aws-artifact/"
+                href="//localhost:1313/10-awsartifact/"
                 />
   </url><url>
-    <loc>//localhost:1313/11-clean-resource/</loc>
+    <loc>//localhost:1313/11-cleanresource/</loc>
     <lastmod>2025-08-06T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/11-clean-resource/"
+                href="//localhost:1313/vi/11-cleanresource/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/11-clean-resource/"
+                href="//localhost:1313/11-cleanresource/"
                 />
   </url><url>
     <loc>//localhost:1313/2-prerequiste/2.2-createiamrole/2.2.2-ec2/</loc>

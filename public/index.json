@@ -4,7 +4,7 @@
 	"title": "Audit Trail Management",
 	"tags": [],
 	"description": "",
-	"content": "Audit Trail Management Overview In this demo, you will learn the basic concepts and hands-on practice with Amazon System Manager - Session Management. You will practice connecting to both public and private servers in a VPC, manage session logs, and understand how to ensure auditability and compliance for your infrastructure.\nContents Introduction Preparation Steps Set Up Audit Automation Deploy Immutable Logging with AWS S3 Analyze Trail with Amazon OpenSearch Service Compliance Reporting with Athena Investigation Tools with Amazon QuickSight Monitoring \u0026amp; Alerts with Amazon CloudWatch Operational Procedures [Legal Coordination with AWS Artifact](10-AWS Artifact/) [Clean Resources](11-Clean resource/) "
+	"content": "Audit Trail Management Overview In this demo, you will learn the basic concepts and hands-on practice with Amazon System Manager - Session Management. You will practice connecting to both public and private servers in a VPC, manage session logs, and understand how to ensure auditability and compliance for your infrastructure.\nContents Introduction Preparation Steps Set Up Audit Automation Deploy Immutable Logging with AWS S3 Analyze Trail with Amazon OpenSearch Service Compliance Reporting with Athena Investigation Tools with Amazon QuickSight Monitoring \u0026amp; Alerts with Amazon CloudWatch Operational Procedures Legal Coordination with AWS Artifact Clean Resources "
 },
 {
 	"uri": "//localhost:1313/3-accessibilitytoinstances/3.1-public-instance/",
@@ -18,7 +18,7 @@
 	"title": "Key Pair",
 	"tags": [],
 	"description": "",
-	"content": "Create Key Pair Click Key Pairs. Click Create Key pair. On the Create Key pair page: For Name, enter audit-demo-key. For Format, select .pem. Scroll to the bottom of the page and click Create key pair.\nDownload the file audit-demo-key.pem to your computer and set permissions with chmod 400 audit-demo-key.pem\n"
+	"content": "Create Key Pair Click Key Pairs. Click Create Key pair. On the Create Key pair page: For Name, enter audit-demo-key. For Format, select .pem. Scroll to the bottom of the page and click Create key pair. Download the file audit-demo-key.pem to your computer and set permissions with chmod 400 audit-demo-key.pem "
 },
 {
 	"uri": "//localhost:1313/2-prerequiste/2.1-createec2/2.1.1-createvpc/",
@@ -32,7 +32,7 @@
 	"title": "Create VPC and Network Components",
 	"tags": [],
 	"description": "",
-	"content": "Prepare AWS Free Tier Account Register at https://aws.amazon.com/free and verify your credit card information.\nLog in to the Console, select a Region (for example: Asia Pacific (Singapore) ap-southeast-1) to reduce latency.\nThe overall architecture after you complete this step will look like:\nTo learn how to create VPCs with public/private subnets, you can refer to the lab:\nWorking with Amazon VPC Contents Create VPC Create Public subnet Create Private subnet Create security group Create public Linux server Create private Windows server "
+	"content": "Prepare AWS Free Tier Account Register at https://aws.amazon.com/free and verify your credit card information.\nLog in to the Console, select a Region (for example: Asia Pacific (Singapore) ap-southeast-1) to reduce latency.\nThe overall architecture after you complete this step will look like:\nTo learn how to create VPCs with public/private subnets, you can refer to the lab:\nWorking with Amazon VPC Contents Create VPC Create Public subnet Create Internet Gateways Create Security Group "
 },
 {
 	"uri": "//localhost:1313/1-introduce/",
@@ -49,6 +49,13 @@
 	"content": "Create Public Subnet Click Subnets. Click Create subnet. On the Create subnet page: For VPC ID, select AuditDemo-PublicSubnet. For Subnet name, enter AuditDemo-PublicSubnet. For Availability Zone, select the first Availability Zone. For IPv4 CIDR block, enter 10.10.1.0/24. Scroll to the bottom of the page and click Create subnet. "
 },
 {
+	"uri": "//localhost:1313/2-prerequiste/2.2-createiamrole/2.2.2-ec2/",
+	"title": "EC2",
+	"tags": [],
+	"description": "",
+	"content": "Launch EC2 On the EC2 page: Click Launch instance. On the Launch instance page: In the Name field, enter AuditDemo-Server. For AMI, select Amazon Linux (managed with yum). For Instance type, choose t2.micro. For Key pair, select audit-demo-key. Network settings: VPC = AuditDemo-VPC, Subnet = AuditDemo-PublicSubnet, Security Group = AuditDemo-SG. Click Launch instance and wait until the status is "
+},
+{
 	"uri": "//localhost:1313/2-prerequiste/",
 	"title": "Preparation Steps",
 	"tags": [],
@@ -60,7 +67,7 @@
 	"title": "Create Public Subnet",
 	"tags": [],
 	"description": "",
-	"content": "Create Public Subnet Click Subnets. Click Create subnet. On the Create subnet page: For VPC ID, select AuditDemo-PublicSubnet. For Subnet name, enter AuditDemo-PublicSubnet. For Availability Zone, select the first Availability Zone. For IPv4 CIDR block, enter 10.10.1.0/24. Scroll to the bottom of the page and click Create subnet. "
+	"content": "Create Public Subnet Click Subnets. Click Create subnet. On the Create subnet page: For VPC ID, select AuditDemo-VPC. For Subnet name, enter AuditDemo-PublicSubnet. For Availability Zone, select the first Availability Zone. For IPv4 CIDR block, enter 10.10.1.0/24. Scroll to the bottom of the page and click Create subnet. "
 },
 {
 	"uri": "//localhost:1313/3-accessibilitytoinstances/3.3-console/",
@@ -81,21 +88,21 @@
 	"title": "Create Internet Gateway &amp; Route Table",
 	"tags": [],
 	"description": "",
-	"content": "Create Private Subnet Click Internet Gateways. Configure Internet Gateways. In the Name tag, enter AuditDemo-IGW. Click Create internet gateway. Confirm successful creation of Internet Gateway Confirm successful creation of Internet Gateway Connect to VPC\n4. Attach Internet Gateway to VPC\nClick Actions Select Attach to AuditDemo-VPC Select VPC ASG from the list (VPC ID will be filled automatically) Click Attach internet gateway Create Route Tables Create Route Table in Amazon VPC\nGo to the VPC interface Select Route Tables from the left menu Click Create route table Configure Route Table Name: AuditDemo-RT VPC: AuditDemo-VPC Click Create route table In the Route Table Click Edit Routes → Add route Destination: 0.0.0.0/0 Target: Internet Gateway -\u0026gt; igw-(AuditDemo-IGW) Click Save routes "
+	"content": "Create Private Subnet Click Internet Gateways. Configure Internet Gateways. In the Name tag, enter AuditDemo-IGW. Click Create internet gateway. Confirm successful creation of Internet Gateway Confirm successful creation of Internet Gateway Connect to VPC\n4. Attach Internet Gateway to VPC\nClick Actions Select Attach to AuditDemo-VPC Select VPC ASG from the list (VPC ID will be filled automatically) Click Attach internet gateway Create Route Tables Create Route Table in Amazon VPC\nGo to the VPC interface Select Route Tables from the left menu Click Create route table Configure Route Table Name: AuditDemo-RT. VPC: AuditDemo-VPC. Click Create route table In the Route Table Click Edit Routes → Add route Destination: 0.0.0.0/0. Target: Internet Gateway -\u0026gt; igw-(AuditDemo-IGW) Click Save routes "
 },
 {
 	"uri": "//localhost:1313/4-s3log/",
 	"title": "Implementing Immutable Logging with (AWS S3)",
 	"tags": [],
 	"description": "",
-	"content": "With Session Manager, we can view the history of connections to instances through Session history. However, we have not seen the details of the commands used in a session.\nIn this section, we will proceed to create an S3 bucket and configure the session logs feature to see the details of the commands used in the session.\nContent: Update IAM Role Create S3 Bucket Create S3 Gateway endpoint Configure Session logs "
+	"content": "Implementing Immutable Logging Use S3 with Object Lock and Versioning support, suitable for projects.\nS3 Bucket Console → S3 → Create bucket\n• Bucket name: audit-demo-logs\n• Region: ap-southeast-1\n• Enable Bucket Versioning.\n• Check Enable Object Lock before creating the bucket. Click Create bucket and wait for completion. Configure Default Retention Go to bucket audit-demo-logs → Properties → Object Lock → Edit\n• Select Default retention: Mode = Compliance, Retention period = 365 days (or shorter for demo, e.g. 7 days) Save changes. IAM Policy for S3 Write Create a JSON policy and attach it to the role AuditLoggerLambdaRole: { \u0026ldquo;Version\u0026rdquo;:\u0026ldquo;2012-10-17\u0026rdquo;, \u0026ldquo;Statement\u0026rdquo;:[ { \u0026ldquo;Effect\u0026rdquo;:\u0026ldquo;Allow\u0026rdquo;, \u0026ldquo;Action\u0026rdquo;:[ \u0026ldquo;s3:PutObject\u0026rdquo;, \u0026ldquo;s3:ListBucket\u0026rdquo;, \u0026ldquo;s3:GetObject\u0026rdquo; ], \u0026ldquo;Resource\u0026rdquo;:[ \u0026ldquo;arn:aws:s3:::audit-demo-logs\u0026rdquo;, \u0026ldquo;arn:aws:s3:::audit-demo-logs/*\u0026rdquo; ] } ] }\nWrite Audit Log to S3 from Lambda The Lambda role (AuditLoggerLambdaRole) must have the appropriate policy: In AWS Console → Lambda → AuditLoggerDemo → Configuration → Environment variables → Edit: Key: BUCKET_NAME = Value: audit-demo-logs Key: LOG_PREFIX = Value: logs/ (optional, to group logs by folder) Deploy Testing \u0026amp; Verification "
 },
 {
 	"uri": "//localhost:1313/2-prerequiste/2.1-createec2/2.1.4-createsecgroup/",
 	"title": "Create Security Groups",
 	"tags": [],
 	"description": "",
-	"content": "Create Security Groups In this step, we will create the security groups used for our instances. As you can see, these security groups do not need to open traditional ports for SSH (port 22) or Remote Desktop (port 3389).\nCreate a security group for the Linux instance in the public subnet Go to the VPC service management interface Click Security Group. Click Create security group. 2. Click Create security group\nIn the Security group name field, enter AuditDemo-SG. In the Description field, enter AuditDemo. In the VPC field, select AuditDemo-VPC. Set Inbound Rules: SSH (TCP 22) source My IP. HTTPS (TCP 443) source 0.0.0.0/0 Outbound: Keep the default All traffic Click Create security group. This completes the creation of the necessary security groups for EC2 instances and the VPC Endpoint. "
+	"content": "Create Security Groups In this step, we will create the security groups used for our instances. As you can see, these security groups do not need to open traditional ports for SSH (port 22) or Remote Desktop (port 3389).\nCreate a security group for the Linux instance in the public subnet Go to the VPC service management interface Click Security Group. Click Create security group. 2. Click Create security group\nIn the Security group name field, enter AuditDemo-SG. In the Description field, enter AuditDemo. In the VPC field, select AuditDemo-VPC. Set Inbound Rules: SSH (TCP 22) source My IP. HTTPS (TCP 443) source 0.0.0.0/0 Outbound: Keep the default All traffic Click Create security group. This completes the creation of the necessary security groups for EC2 instances and the VPC Endpoint.\n"
 },
 {
 	"uri": "//localhost:1313/5-portfwd/",
@@ -133,25 +140,18 @@
 	"content": "Operational Procedures Ensure your logs are kept for the correct retention period, have backup copies, and have a standard operating procedure (SOP) for incident response.\nConfigure Log Retention Go to CloudWatch Logs\nAWS Console → CloudWatch → on the left select Logs → Log groups. Select the log group for Lambda audit Click on /aws/lambda/AuditLoggerDemo. Click Actions → Edit retention. Choose the retention period (here, select 7 days) → Save. S3 Object Lock\nAWS Console → S3 → click on the audit-demo-logs bucket. Go to the Properties tab → scroll down to Object lock → click Edit Set Retention mode = Compliance (immutable), Retention period = 10 days → Save. Backup \u0026amp; Recovery Create Backup vault\nConsole: AWS Backup → Backup vaults → Create backup vault → Name = AuditBackupVault. Create Backup plan\nConsole → AWS Backup → Backup plans → Create backup plan → Build a new plan. Plan name: AuditBackupPlan Frequency: Daily at 00:00 Retention: 7 days Click Create plan. Assign resource to plan\nConsole: Select AuditBackupPlan → Assign resources → Resource type = S3 → ARN = arn:aws:s3:::audit-demo-logs → Assign. Incident Response SOP Proof of data (S3 Object Lock)\nUse CLI to list versions: aws s3api list-object-versions \u0026ndash;bucket audit-demo-logs \u0026ndash;prefix logs/\nCheck if any version has been deleted or overwritten without authorization. Rebuild QuickSight dashboard\nQuickSight → Datasets → select AuditLogsAthena → click Refresh → wait for SPICE import → Visualize to update the dashboard with new data.\nWith these steps, we have set up retention, backup/recovery, and incident response procedures for the audit system, ensuring it is always safe, recoverable, and operates smoothly.\n"
 },
 {
-	"uri": "//localhost:1313/10-aws-artifact/",
+	"uri": "//localhost:1313/10-awsartifact/",
 	"title": "Legal Coordination with AWS Artifact",
 	"tags": [],
 	"description": "",
 	"content": "AWS Artifact Collect compliance reports (such as SOC 2, ISO 27001, GDPR) from AWS Artifact to compare and demonstrate that your audit system meets legal standards.\nAccess AWS Artifact AWS Console → Services → Security, Identity, \u0026amp; Compliance → Artifact. On the tab bar, select Reports. Download reports In the Reports tab: Select SOC 2, ISO 27001 then Download (PDF). Save the PDF files to your project\u0026rsquo;s local folder. Compare requirements (Gap Analysis) Open the SOC 2 PDF file Identify requirements for logging, monitoring, retention. Record the mapping between the standards and the implemented features. Gather Audit Trail evidence CloudWatch Logs Export S3 Version List Athena Query Results Snapshot QuickSight Dashboard Compliance PDFs Prepare for submission to regulator Package the files. With this step, we have completed the audit lifecycle from technical (logging, immutability, reporting, dashboard, alerting, SOP) to legal evidence.\n"
 },
 {
-	"uri": "//localhost:1313/11-clean-resource/",
+	"uri": "//localhost:1313/11-cleanresource/",
 	"title": "Clean Resources",
 	"tags": [],
 	"description": "",
 	"content": "Clean Resources Remove all EC2, VPC, Lambda, S3, OpenSearch, Glue, Athena, Backup, CloudWatch, SNS, EventBridge, etc. used in the demo.\nDelete EC2 \u0026amp; Networking Terminate EC2 Instance\nGo to AWS Console → EC2 → Instances. Select AuditDemo-Server → Actions (at the top) → Instance state → Terminate instance → confirm Terminate. Delete Key Pair\nEC2 → Key Pairs (left menu) → select audit-demo-key → Actions → Delete key pair → Delete. Delete Internet Gateway\nSelect AuditDemo-IGW → Actions → Detach from VPC → confirm → then Actions → Delete internet gateway → Delete. Delete Route Table\nVPC → Route Tables → select AuditDemo-RT → Actions → Delete route table → Delete. Delete Subnets\nVPC → Subnets → select AuditDemo-PublicSubnet and AuditDemo-PublicSubnet2 one by one → for each subnet Actions → Delete subnet → Delete. Delete VPC\nVPC → Your VPCs → select AuditDemo-VPC → Actions → Delete VPC → Delete. Delete S3 Buckets Empty \u0026amp; Delete bucket audit-demo-logs\nAWS Console → S3 → Buckets → select audit-demo-logs. On the Overview tab, click Empty bucket → enter bucket name → Empty. After that, click Delete → enter name → Delete bucket. Empty \u0026amp; Delete bucket audit-demo-query-results\nS3 → select bucket → Empty bucket → confirm → then Delete. Delete Glue, Athena \u0026amp; Backup Delete Glue crawler\nAWS Console → AWS Glue → Crawlers → select AuditLogsS3Crawler → Action → Delete crawler → Delete. Delete Glue database\nGlue → Data Catalog → Databases → select audit_reports → Action → Delete database → Delete. Delete Athena saved queries\nAWS Console → Athena → select Saved queries tab → click saved query name DailyAuditReport → Actions → Delete query → Delete. Delete AWS Backup plan \u0026amp; vault\nAWS Console → AWS Backup → Backup plans → select AuditBackupPlan → Actions → Delete backup plan → Delete. Backup → Backup vaults → select AuditBackupVault → Actions → Delete backup vault → Delete. Delete Lambda \u0026amp; IAM Delete Lambda function\nAWS Console → Lambda → Functions → select AuditLoggerDemo → Actions → Delete function → confirm Delete. Delete IAM Role for Lambda\nConsole → IAM → Roles → find AuditLoggerLambdaRole → click the role → Permissions tab → if there is an inline policy click Delete inline policy to remove → back to role page → Role actions → Delete role → confirm Delete. Delete IAM Role for Glue Crawler\nIAM → Roles → select AWSGlueServiceRole-AuditLogsS3Crawler → Role actions → Delete role → Delete. Delete SNS topic\nAWS Console → SNS → Topics → select AuditAlertsTopic → Actions → Delete topic → Delete. Delete EventBridge rule\nConsole → EventBridge → Rules → select rule DailyAuditReportRule → Actions → Remove targets → tick target → Remove → then Actions → Delete rule → Delete. Delete OpenSearch Domain AWS Console → OpenSearch Service → Domains → select audit-trail-demo → Actions → Delete domain → enter domain name → Delete. Delete CloudWatch Resources Delete Metric filter\nCloudWatch → Logs → Log groups → select /aws/lambda/AuditLoggerDemo → Metric filters tab → select AuditErrorFilter → Actions → Delete filter. Delete Alarm\nCloudWatch → Alarms → All alarms → select HighErrorAuditAlert → Actions → Delete → confirm. Delete Log group\nCloudWatch → Logs → Log groups → select /aws/lambda/AuditLoggerDemo → Actions → Delete log group → Delete. Delete QuickSight Artifacts\nQuickSight → Dashboards → select Audit Trail Investigation → Delete → Delete.\nQuickSight → Analyses → select AuditTrailInvestigation → Delete → Delete.\nQuickSight → Datasets → select AuditLogsAthena → Delete → Delete.\n"
-},
-{
-	"uri": "//localhost:1313/2-prerequiste/2.2-createiamrole/2.2.2-ec2/",
-	"title": "",
-	"tags": [],
-	"description": "",
-	"content": ""
 },
 {
 	"uri": "//localhost:1313/3-accessibilitytoinstances/3.2-private-instance/",

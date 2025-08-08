@@ -19,18 +19,19 @@ Trong bước này chúng ta sẽ tiến hành tạo các security group đượ
 ![SG](/images/2.prerequisite/019-createsg.png)
 2. Click Create security group
 
-3. Tại mục **Security group name**, điền **AuditDemo-SG**. 
-  + Tại mục **Description**, điền **AuditDemo**.
-  + Tại mục **VPC**, **AuditDemo-VPC** .
+3. Tại mục **Security group name**, điền **`AuditDemo-SG`**. 
+  + Tại mục **Description**, điền **`AuditDemo`**.
+  + Tại mục **VPC**, **A`uditDemo-VPC`** .
 
 ![SG](/images/2.prerequisite/023.png)
 
 4. Chọn Inbound Rules:
   + SSH (TCP 22) nguồn **My IP**.
-  + HTTPS (TCP 443) nguồn **0.0.0.0/0**
-
+  + HTTPS (TCP 443) nguồn **`0.0.0.0/0`**
+![SG](/images/2.prerequisite/0241.png)
 5. Outbound:
   + Giữ mặc định All traffic
    + Click **Create security group**.
-![SG](/images/2.prerequisite/024.png)
+
+![SG](/images/2.prerequisite/221.png)
 Như vậy chúng ta đã tiến hành xong việc tạo các security group cần thiết cho các EC2 instance và VPC Endpoint.

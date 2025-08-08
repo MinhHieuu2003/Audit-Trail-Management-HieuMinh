@@ -14,8 +14,10 @@ pre : " <b> 2.1.1 </b> "
 ![VPC](/images/2.prerequisite/001-createvpc.png)
 
 2. On the **Create VPC** page:
-  + In the **Name tag** field, enter **AuditDemo-VPC**.
-  + In the **IPv4 CIDR** field, enter: **10.10.0.0/16**.
+  + In the **Name tag** field, enter `AuditDemo-VPC`.
+  + In the **IPv4 CIDR** field, enter: `10.10.0.0/16`.
   + Click **Create VPC**.
 
 ![VPC](/images/2.prerequisite/002.png)
+
+![VPC](/images/2.prerequisite/003.png)
