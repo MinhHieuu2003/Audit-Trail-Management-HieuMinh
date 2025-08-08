@@ -25,5 +25,5 @@ In this demo, you will learn the basic concepts and hands-on practice with Amazo
  7. [Investigation Tools with Amazon QuickSight](7-Quicksight/)
  8. [Monitoring & Alerts with Amazon CloudWatch](8-CloudWatch/)
  9. [Operational Procedures](9-OperationalProcedures/)
- 10. [Legal Coordination with AWS Artifact](10-AWS Artifact/)
- 11. [Clean Resources](11-Clean resource/)
+ 10. [Legal Coordination with AWS Artifact](10-AWSArtifact/)
+ 11. [Clean Resources](11-Cleanresource/)
