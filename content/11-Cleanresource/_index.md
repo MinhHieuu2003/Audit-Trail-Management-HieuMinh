@@ -16,16 +16,7 @@ Remove all EC2, VPC, Lambda, S3, OpenSearch, Glue, Athena, Backup, CloudWatch, S
 -   Delete Key Pair
     + EC2 → Key Pairs (left menu) → select audit-demo-key → Actions → Delete key pair → Delete.
 
--   Delete Internet Gateway
-    + Select AuditDemo-IGW → Actions → Detach from VPC → confirm → then Actions → Delete internet gateway → Delete.
-
--   Delete Route Table
-    + VPC → Route Tables → select AuditDemo-RT → Actions → Delete route table → Delete.
-
--   Delete Subnets
-    + VPC → Subnets → select AuditDemo-PublicSubnet and AuditDemo-PublicSubnet2 one by one → for each subnet Actions → Delete subnet → Delete.
-
--   Delete VPC
+-   Delete VPC = delete everything belonging to that VPC
     + VPC → Your VPCs → select AuditDemo-VPC → Actions → Delete VPC → Delete.
 
 2. Delete S3 Buckets
@@ -91,3 +82,5 @@ Remove all EC2, VPC, Lambda, S3, OpenSearch, Glue, Athena, Backup, CloudWatch, S
     + QuickSight → Analyses → select AuditTrailInvestigation → Delete → Delete.
 
     + QuickSight → Datasets → select AuditLogsAthena → Delete → Delete.
+
+### Thank you for watching.

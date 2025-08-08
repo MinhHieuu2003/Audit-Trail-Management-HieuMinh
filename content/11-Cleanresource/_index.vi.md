@@ -18,19 +18,7 @@ Loại bỏ hết EC2, VPC, Lambda, S3, OpenSearch, Glue, Athena, Backup, CloudW
     + EC2 → Key Pairs (menu bên trái) → chọn audit-demo-key → Actions → Delete key pair → Delete.
 
 
--   Xóa Internet Gateway
-    + Chọn AuditDemo-IGW → Actions → Detach from VPC → xác nhận → sau đó Actions → Delete internet gateway → Delete.
-
-
--   Xóa Route Table
-    + VPC → Route Tables → chọn AuditDemo-RT → Actions → Delete route table → Delete.
-
-
--   Xóa Subnets
-    + VPC → Subnets → lần lượt chọn AuditDemo-PublicSubnet và AuditDemo-PublicSubnet2 → mỗi subnet Actions → Delete subnet → Delete.
-
-
--   Xóa VPC
+-   Xóa VPC = xóa luôn mọi thứ thuộc về VPC đó
     + VPC → Your VPCs → chọn AuditDemo-VPC → Actions → Delete VPC → Delete.
 
 
@@ -102,3 +90,4 @@ Loại bỏ hết EC2, VPC, Lambda, S3, OpenSearch, Glue, Athena, Backup, CloudW
     + QuickSight → Datasets → chọn AuditLogsAthena → Delete → Delete.
 
 
+### Cảm ơn vì đã xem tới đây.
