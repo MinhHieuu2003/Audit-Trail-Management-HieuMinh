@@ -10,7 +10,9 @@ chapter : false
 
 Trong bài demo này, bạn sẽ tìm hiểu các khái niệm cơ bản và thực hành với Amazon System Manager - Quản lý Phiên. Bạn sẽ thực hành kết nối với cả máy chủ công cộng và riêng tư trong VPC, quản lý nhật ký phiên và hiểu cách đảm bảo khả năng kiểm toán và tuân thủ cho cơ sở hạ tầng của mình.
 
-![ConnectPrivate](/images/arc-log.png) 
+![ConnectPrivate](/images/001.png) 
+
+![ConnectPrivate](/images/002.png) 
 
 ### Nội dung
 
