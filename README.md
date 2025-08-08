@@ -17,3 +17,5 @@ Với việc sử dụng Audit Trail Management kết hợp với cơ chế Immu
 Với những ưu điểm trên, Audit Trail với Immutable Logging là lựa chọn phù hợp cho các tổ chức mong muốn tăng cường giám sát hệ thống, đảm bảo tuân thủ pháp lý và chủ động phòng ngừa các rủi ro bảo mật một cách hiệu quả.
 
 - Yêu cầu Audit automation, immutable logging, trail analysis, compliance reporting, investigation tools, monitoring setup, operational procedures, legal coordination.
+
+- Link Web hướng dẫn demo: `audit-trail-management-hieuminh.pages.dev`
