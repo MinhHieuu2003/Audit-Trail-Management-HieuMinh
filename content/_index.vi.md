@@ -25,5 +25,5 @@ Trong bài demo này, bạn sẽ tìm hiểu các khái niệm cơ bản và th�
  7. [Investigation Tools với Amazon QuickSight](7-Quicksight/)
  8. [Monitoring & Alerts qua Amazon CloudWatch](8-CloudWatch/)
  9. [Operational Procedures](9-OperationalProcedures/)
- 10. [Legal Coordination với AWS Artifact](10-AWS Artifact/)
- 11. [clean resource](11-Clean resource/)
+ 10. [Legal Coordination với AWS Artifact](10-AWSArtifact/)
+ 11. [clean resource](11-Cleanresource/)
