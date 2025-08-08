@@ -10,7 +10,9 @@ chapter : false
 
 In this demo, you will learn the basic concepts and hands-on practice with Amazon System Manager - Session Management. You will practice connecting to both public and private servers in a VPC, manage session logs, and understand how to ensure auditability and compliance for your infrastructure.
 
-![ConnectPrivate](/images/arc-log.png) 
+![ConnectPrivate](/images/001.png) 
+
+![ConnectPrivate](/images/002.png) 
 
 ### Contents
 
