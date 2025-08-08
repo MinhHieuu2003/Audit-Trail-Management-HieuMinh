@@ -1,0 +1,176 @@
+[
+{
+	"uri": "//localhost:1313/vi/",
+	"title": "Audit Trail Management",
+	"tags": [],
+	"description": "",
+	"content": "Audit Trail Management Tổng quan Trong bài demo này, bạn sẽ tìm hiểu các khái niệm cơ bản và thực hành với Amazon System Manager - Quản lý Phiên. Bạn sẽ thực hành kết nối với cả máy chủ công cộng và riêng tư trong VPC, quản lý nhật ký phiên và hiểu cách đảm bảo khả năng kiểm toán và tuân thủ cho cơ sở hạ tầng của mình.\nNội dung Giới thiệu Các bước chuẩn bị Thiết lập Audit Automation Triển khai Immutable Logging với (AWS S3) Phân tích Trail với Amazon OpenSearch Service Compliance Reporting với Athena Investigation Tools với Amazon QuickSight Monitoring \u0026amp; Alerts qua Amazon CloudWatch Operational Procedures [Legal Coordination với AWS Artifact](10-AWS Artifact/) [clean resource](11-Clean resource/) "
+},
+{
+	"uri": "//localhost:1313/vi/3-accessibilitytoinstances/3.1-public-instance/",
+	"title": "IAM Role cho Lambda",
+	"tags": [],
+	"description": "",
+	"content": "Tạo IMA Role Truy cập vào giao diện quản trị của dịch vụ IMA Role. B1 Click chọn AWS service.\nClick chọn Lambda. Click Next. B2 Điền AWSLambdaBasicExecutionRole rồi tick chọn.\nCustom policy cho phép qldb:SendCommand và qldb:InsertDocument (nếu ghi trực tiếp vào QLDB). B3 Đặt tên role: AuditLoggerLambdaRole\n"
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.2-createiamrole/2.2.1-keypair/",
+	"title": "Key Pair",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Key pair Click Key Pairs. Click Create Key pairs. Tại trang Create Key pairs. Tại mục Name click chọn audit-demo-key. Tại mục Format click chọn .pem. Kéo xuống cuối trang , click Create subnet.\nTải file audit-demo-key.pem về máy, set quyền chmod 400 audit-demo-key.pem\n"
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createec2/2.1.1-createvpc/",
+	"title": "Tạo VPC ",
+	"tags": [],
+	"description": "",
+	"content": "Tạo VPC Lab VPC Truy cập [giao diện quản trị dịch vụ VPC] Click Your VPC. Click Create VPC. Tại trang Create VPC. Tại mục Name tag điền AuditDemo-VPC. Tại mục IPv4 CIDR điền : 10.10.0.0/16. Click Create VPC. "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createec2/",
+	"title": "Tạo VPC và các thành phần mạng",
+	"tags": [],
+	"description": "",
+	"content": "Chuẩn bị AWS Free Tier Account Đăng ký tại https://aws.amazon.com/free, xác thực thông tin thẻ tín dụng.\nĐăng nhập Console, chọn Region (ví dụ: Asia Pacific (Singapore) ap-southeast-1) để giảm độ trễ.\nTổng quan kiến trúc sau khi các bạn hoàn tất bước này sẽ như sau:\nĐể tìm hiểu cách tạo các VPC với public/private subnet các bạn có thể tham khảo bài lab :\nLàm việc với Amazon VPC Nội dung Tạo VPC Tạo Public subnet Tạo Private subnet Tạo security group Tạo máy chủ Linux public Tạo máy chủ Windows private "
+},
+{
+	"uri": "//localhost:1313/vi/1-introduce/",
+	"title": "Giới thiệu",
+	"tags": [],
+	"description": "",
+	"content": "Audit Trail Management với Immutable Logging là một giải pháp giúp ghi lại toàn bộ các hoạt động của người dùng và hệ thống một cách liên tục, chính xác và không thể chỉnh sửa. Trong môi trường CNTT hiện đại, nơi mà bảo mật, tuân thủ và khả năng truy vết là yếu tố bắt buộc, việc triển khai audit trail là không thể thiếu – đặc biệt trong các hệ thống có yêu cầu cao về giám sát và kiểm toán.\nTuy nhiên, các hệ thống ghi log thông thường có thể bị chỉnh sửa hoặc xóa mất dữ liệu nếu không có cơ chế bảo vệ phù hợp. Vì vậy, Immutable Logging (ghi log bất biến) ra đời như một giải pháp để đảm bảo rằng mọi hành động sau khi được ghi nhận sẽ không thể bị thay đổi hoặc làm giả – phục vụ cho mục tiêu kiểm tra, giám sát và điều tra sau này một cách tin cậy.\nVới việc sử dụng Audit Trail Management kết hợp với cơ chế Immutable Logging, bạn sẽ có được những ưu điểm sau:\nKhông thể chỉnh sửa hoặc xóa log sau khi đã ghi – đảm bảo tính toàn vẹn. Ghi nhận đầy đủ các hoạt động của người dùng và hệ thống (ai, làm gì, lúc nào, ở đâu). Dễ dàng tích hợp với hệ thống SIEM, công cụ phân tích bảo mật hoặc kiểm toán. Hỗ trợ lưu trữ log dài hạn phục vụ tuân thủ các tiêu chuẩn như ISO 27001, GDPR, HIPAA. Tăng cường khả năng điều tra sự cố, truy vết vi phạm nội bộ hoặc tấn công từ bên ngoài. Tối ưu chi phí so với các phương pháp bảo mật truyền thống như backup log thủ công. Có thể triển khai kết hợp với công nghệ Blockchain, WORM storage hoặc hệ thống lưu trữ append-only. Tạo cơ sở minh bạch để xây dựng niềm tin với khách hàng và đối tác. Với những ưu điểm trên, Audit Trail với Immutable Logging là lựa chọn phù hợp cho các tổ chức mong muốn tăng cường giám sát hệ thống, đảm bảo tuân thủ pháp lý và chủ động phòng ngừa các rủi ro bảo mật một cách hiệu quả.\n"
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.2-createiamrole/",
+	"title": "Tạo Key Pair và Khởi động EC2 Instance",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Public subnet Click Subnets. Click Create subnet. Tại trang Create subnet. Tại mục VPC ID click chọn AuditDemo-PublicSubnet. Tại mục Subnet name điền AuditDemo-PublicSubnet. Tại mục Availability Zone chọn Availability zone đầu tiên. Tại mục IPv4 CIRD block điền 10.10.1.0/24. Kéo xuống cuối trang , click Create subnet. "
+},
+{
+	"uri": "//localhost:1313/vi/3-accessibilitytoinstances/3.2-private-instance/",
+	"title": "Viết và đóng gói Lambda Function",
+	"tags": [],
+	"description": "",
+	"content": "Lambda Function Tạo mã nguồn(audit_logger.py) import json\nimport boto3\nfrom datetime import datetime\n#Khởi client QLDB nếu cần #qldb_client = boto3.client(\u0026lsquo;qldb\u0026rsquo;)\ndef handler(event, context): payload = { \u0026lsquo;user\u0026rsquo;: event.get(\u0026lsquo;user\u0026rsquo;, \u0026lsquo;anonymous\u0026rsquo;), \u0026lsquo;action\u0026rsquo;: event.get(\u0026lsquo;action\u0026rsquo;, \u0026lsquo;unknown\u0026rsquo;), \u0026rsquo;timestamp\u0026rsquo;: event.get(\u0026rsquo;timestamp\u0026rsquo;, datetime.utcnow().isoformat()) }\n#Ghi vào CloudWatch Logs print(json.dumps(payload)) #Ví dụ ghi vào QLDB: #qldb_client.send_command(LedgerName=\u0026lsquo;AuditDemoLedger\u0026rsquo;, Statement=\u0026ldquo;INSERT INTO AuditLogs ?\u0026rdquo;, Parameters=[{\u0026lsquo;IonBinary\u0026rsquo;: payload}]) return {\u0026lsquo;status\u0026rsquo;: \u0026lsquo;OK\u0026rsquo;, \u0026lsquo;payload\u0026rsquo;: payload} 2. Đóng gói zip function.zip audit_logger.py\n"
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.2-createiamrole/2.2.2-ec2/",
+	"title": "EC2",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Launch EC2 Tại trang EC2. Click Launch instance. Tại trang Launch instance. Tại mục Name điền AuditDemo-Server. Tại mục AMI chọn Amazon Linux quản ý gói với yum. Tại mục Instance type chọn t2.micro Tại mục Key pair chọn audit-demo-key Network settings: VPC = AuditDemo-VPC, Subnet = AuditDemo-PublicSubnet, Security Group = AuditDemo-SG. Bấm Launch instance và chờ trạng thái running. "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/",
+	"title": "Các bước chuẩn bị",
+	"tags": [],
+	"description": "",
+	"content": "\rBạn cần tạo sẵn 1 Linux instance thuộc public subnet và 1 Window instance thuộc private subnet để thực hiện bài thực hành này.\nĐể tìm hiểu cách tạo các EC2 instance và VPC với public/private subnet các bạn có thể tham khảo bài lab :\nGiới thiệu về Amazon EC2 Làm việc với Amazon VPC Để sử dụng System Manager để quản lý window instance nói riêng và các instance nói chung của chúng ta trên AWS, ta cần phải cung cấp quyền cho các instance của chúng ta có thể làm việc với System Manager.Trong phần chuẩn bị này, chúng ta cũng sẽ tiến hành tạo IAM Role để cấp quyền cho các instance có thể làm việc với System Manager.\n"
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createec2/2.1.2-createpublicsubnet/",
+	"title": "Tạo Subnet Public",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Public subnet Click Subnets. Click Create subnet. Tại trang Create subnet. Tại mục VPC ID click chọn AuditDemo-PublicSubnet. Tại mục Subnet name điền AuditDemo-PublicSubnet. Tại mục Availability Zone chọn Availability zone đầu tiên. Tại mục IPv4 CIRD block điền 10.10.1.0/24. Kéo xuống cuối trang , click Create subnet. "
+},
+{
+	"uri": "//localhost:1313/vi/3-accessibilitytoinstances/",
+	"title": "Thiết lập Audit Automation",
+	"tags": [],
+	"description": "",
+	"content": "Trong bước này, chúng ta sẽ triển khai Lambda function tự động ghi audit log, cấu hình thu thập và hiển thị trong CloudWatch.\n"
+},
+{
+	"uri": "//localhost:1313/vi/3-accessibilitytoinstances/3.3-console/",
+	"title": "Triển khai Lambda qua AWS CLI hoặc Console",
+	"tags": [],
+	"description": "",
+	"content": "Tạo một AWS Lambda Function Via Console: AWS Console: điều hướng đến Lambda → Functions → Create function. Function name: AuditLoggerDemo Runtime: Python 3.9 Architecture: x86_64 Permissions: Mở Change default execution role → Chọn Use an existing role -\u0026gt; AuditLoggerLambdaRole. Nhấn Create function. Tại trang function mới. Code Source: Chọn Upload from → .zip file. Upload file function.zip (chứa audit_logger.py). Deploy code. Test event Trong tab Test Đặt Event name: TestLogin Dán JSON: {\u0026ldquo;user\u0026rdquo;:\u0026ldquo;hocsinh1\u0026rdquo;,\u0026ldquo;action\u0026rdquo;:\u0026ldquo;login\u0026rdquo;,\u0026ldquo;timestamp\u0026rdquo;:\u0026ldquo;2025-07-27T12:00:00Z\u0026rdquo;} Chạy thử Function Với event TestLogin đã chọn, click Test. Kết quả execution sẽ hiển thị phía dưới: Cấu hình CloudWatch Logs Cấu hình CloudWatch Logs Kiểm tra Log Group. Console \u0026gt; CloudWatch \u0026gt; Logs \u0026gt; Log groups \u0026gt; /aws/lambda/AuditLoggerDemo. Mỗi invocation sẽ tạo log stream mới. Tạo Metric Filter (\u0026hellip;) Lambda function đã có IAM Role với quyền ghi Logs và (tùy chọn) QLDB.\nMỗi sự kiện mẫu hiển thị JSON payload trong CloudWatch Logs.\nTest event chạy thành công và in payload đúng.\n"
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createec2/2.1.3-createprivatesubnet/",
+	"title": "Tạo Internet Gateway &amp; Route Table",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Private subnet Click Internet Gateways. Cấu hình Internet Gateways. Tại Name tag, nhập AuditDemo-IGW. Click Create internet gateway. Xác nhận tạo Internet Gateway thành công Xác nhận tạo Internet Gateway thành công Kết nối với VPC 4. Gắn Internet Gateway vào VPC\nClick Actions Chọn Attach to AuditDemo-VPC Chọn VPC ASG từ danh sách (VPC ID sẽ tự động điền) Click Attach internet gateway Tạo Route tables Tạo Route Table trong Amazon VPC\nTruy cập giao diện VPC Chọn Route Tables từ menu bên trái Click vào Create route table Cấu hình Route Table Name: AuditDemo-RT. VPC: AuditDemo-VPC. Click Create route table. Trong Route Table Chọn Edit Routes → Add route. Destination: 0.0.0.0/0 Target: Internet Gateway -\u0026gt; igw-(AuditDemo-IGW) Click Save routes. "
+},
+{
+	"uri": "//localhost:1313/vi/4-s3log/",
+	"title": "Triển khai Immutable Logging với (AWS S3)",
+	"tags": [],
+	"description": "",
+	"content": "Triển khai Immutable Logging Sử dụng S3 có hỗ trợ Object Lock và Versioning, phù hợp cho đồ án.\nS3 Bucket Console → S3 → Create bucket\n• Bucket name: audit-demo-logs\n• Region: ap-southeast-1\n• Bật Bucket Versioning.\n• Tích vào Enable Object Lock trước khi tạo bucket. Nhấn Create bucket và chờ hoàn tất. Cấu hình Default Retention Vào bucket audit-demo-logs → Properties → Object Lock → Edit\n• Chọn Default retention: Mode = Compliance, Retention period = 365 days (hoặc ngắn hơn cho demo, ví dụ 7 days) Save changes. IAM Policy cho S3 Write Tạo policy JSON và gắn vào role AuditLoggerLambdaRole: { \u0026ldquo;Version\u0026rdquo;:\u0026ldquo;2012-10-17\u0026rdquo;, \u0026ldquo;Statement\u0026rdquo;:[ { \u0026ldquo;Effect\u0026rdquo;:\u0026ldquo;Allow\u0026rdquo;, \u0026ldquo;Action\u0026rdquo;:[ \u0026ldquo;s3:PutObject\u0026rdquo;, \u0026ldquo;s3:ListBucket\u0026rdquo;, \u0026ldquo;s3:GetObject\u0026rdquo; ], \u0026ldquo;Resource\u0026rdquo;:[ \u0026ldquo;arn:aws:s3:::audit-demo-logs\u0026rdquo;, \u0026ldquo;arn:aws:s3:::audit-demo-logs/*\u0026rdquo; ] } ] }\nGhi Audit Log vào S3 từ Lambda Role của Lambda (AuditLoggerLambdaRole) phải có policy cho phép: Trong AWS Console → Lambda → AuditLoggerDemo → Configuration → Environment variables → Edit: Key: BUCKET_NAME = Value: audit-demo-logs Key: LOG_PREFIX = Value: logs/ (tuỳ chọn, để gom log theo folder) Deploy Kiểm thử \u0026amp; xác minh "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createec2/2.1.4-createsecgroup/",
+	"title": "Tạo các security group",
+	"tags": [],
+	"description": "",
+	"content": "Tạo các security group Trong bước này chúng ta sẽ tiến hành tạo các security group được sử dụng cho các instance của chúng ta. Các bạn có thể thấy, các securiy group này sẽ không cần phải mở các port truyền thống để ssh như port 22 hoặc remote desktop thông qua port 3389.\nTạo security group cho Linux instance nằm trong public subnet Truy cập giao diện quản trị dịch vụ VPC Click Security Group. Click Create security group. 2. Click Create security group\nTại mục Security group name, điền AuditDemo-SG. Tại mục Description, điền AuditDemo. Tại mục VPC, AuditDemo-VPC . Chọn Inbound Rules: SSH (TCP 22) nguồn My IP. HTTPS (TCP 443) nguồn 0.0.0.0/0 Outbound: Giữ mặc định All traffic Click Create security group. Như vậy chúng ta đã tiến hành xong việc tạo các security group cần thiết cho các EC2 instance và VPC Endpoint. "
+},
+{
+	"uri": "//localhost:1313/vi/5-portfwd/",
+	"title": "Phân tích Trail với Amazon OpenSearch Service",
+	"tags": [],
+	"description": "",
+	"content": "Thu thập, lập chỉ mục và trực quan hoá các audit log để phục vụ phân tích và điều tra.\nAmazon OpenSearch Service Tạo Domain OpenSearch AWS Console → OpenSearch Service → Create domain.\nChọn Deployment type: Development and testing.\nĐặt Domain name: audit-trail-demo.\nSet capacity: 1 instance, loại c7g.xlarge.search.\nNetwork configuration:\nVPC: AuditDemo-VPC Subnet: AuditDemo-PublicSubnet (Vào Route tables -\u0026gt; Edit subnet associations -\u0026gt; click chọn cả 2 Subnets -\u0026gt; nhấn Save) Security Group: AuditDemo-SG Fine-grained access control: Create master user ( Hãy tự tạo username và password) Access policy (cho phép Lambda và bạn truy cập):\n{ \u0026ldquo;Version\u0026rdquo;: \u0026ldquo;2012-10-17\u0026rdquo;, \u0026ldquo;Statement\u0026rdquo;: [ { \u0026ldquo;Effect\u0026rdquo;: \u0026ldquo;Allow\u0026rdquo;, \u0026ldquo;Principal\u0026rdquo;: { \u0026ldquo;AWS\u0026rdquo;: [ \u0026ldquo;arn:aws:iam::\u0026lt;ACCOUNT_ID\u0026gt;:role/AuditLoggerLambdaRole\u0026rdquo;, \u0026ldquo;arn:aws:iam::\u0026lt;ACCOUNT_ID\u0026gt;:user/\u0026rdquo; ] }, \u0026ldquo;Action\u0026rdquo;: \u0026ldquo;es:\u0026rdquo;, \u0026ldquo;Resource\u0026rdquo;: \u0026ldquo;arn:aws:es::\u0026lt;ACCOUNT_ID\u0026gt;:domain/audit-trail-demo/\u0026rdquo; } ] }\nClick Create domain và chờ trạng thái chuyển thành Active.\nEm đã thử nhưng vẫn không biết tạo domain sao cho đúng.\nTại trang Kinesis. chọn Create data stream Console → Kinesis Data Firehose → Create Firehose stream. Source: chọn Amazon Kinesis Data Stream AuditStream (hoặc Direct PUT nếu không dùng buffer). Destination: Amazon OpenSearch Service → Domain audit-trail-demo → nhập Index name audit-logs. Bước 1 phải hoàn thành.\nRole: chọn (hoặc tạo) IAM Role FirehoseDeliveryRole có quyền es:ESHttpPost và s3:PutObject (nếu bật backup). (Tùy chọn) bật S3 backup để lưu bản sao log vào bucket như audit-demo-backup. Click Create delivery stream. Kết nối CloudWatch Logs tới Firehose: Console → CloudWatch → Log groups → chọn /aws/lambda/AuditLoggerDemo → Actions → Stream to AWS service. Chọn Kinesis Firehose → chọn stream AuditStream → Save. Tạo Index Pattern \u0026amp; Visualizations trên OpenSearch Dashboards Mở OpenSearch Dashboards từ link trong OpenSearch Console.\nVào Stack Management → Index Patterns → Create index pattern:\nIndex pattern: audit-logs* Chọn trường timestamp (timestamp hoặc @timestamp) để filter theo thời gian. Visualize Library → Create visualization:\nBar chart: count của documents theo field action. Date histogram: timeline events theo khung giờ. Data table: top 10 users có nhiều events nhất (group by user). Dashboard → Create dashboard Audit Trail Dashboard → Add các visualization vừa tạo.\nKiểm thử \u0026amp; Xác minh Gửi một vài test events qua Lambda (bước 2) để sinh log.\nChờ vài phút, Firehose sẽ đẩy dữ liệu vào OpenSearch.\nDiscover: trên Dashboards, vào tab Discover để xem raw log.\nDashboard: mở Audit Trail Dashboard, kiểm tra:\nBiểu đồ bar chart hiển thị đúng số lượng events theo action. Timeline hiển thị liên tục theo timestamp. Data table liệt kê đúng top users. Làm hoàn thành các bước sẽ hiện thị kết quả.\n"
+},
+{
+	"uri": "//localhost:1313/vi/6-cleanup/",
+	"title": "Compliance Reporting với Athena",
+	"tags": [],
+	"description": "",
+	"content": "Tổng hợp và lên lịch báo cáo từ audit logs đã lưu bất biến trong S3 bucket audit-demo-logs.\nAmazon Athena Chuẩn bị dữ liệu log trên S3 Logs đã được ghi vào bucket audit-demo-logs trong folder logs/ (tại 4). Đảm bảo bucket versioning và Object Lock vẫn active, nên dữ liệu không thể bị xóa/ghi đè. Tạo AWS Glue Crawler AWS Console → Glue → Crawlers → Add crawler. Name: AuditLogsS3Crawler. Data store: chọn S3, nhập path 1s3://audit-demo-logs/logs/1. IAM role: chọn (hoặc tạo) GlueCrawlerRole có quyền: JSON:\n{ \u0026quot;Effect\u0026quot;: \u0026quot;Allow\u0026quot;,\r\u0026quot;Action\u0026quot;: [\u0026quot;s3:GetObject\u0026quot;,\u0026quot;s3:ListBucket\u0026quot;],\r\u0026quot;Resource\u0026quot;: [\u0026quot;arn:aws:s3:::audit-demo-logs\u0026quot;,\u0026quot;arn:aws:s3:::audit-demo-logs/logs/*\u0026quot;]\r} Output → Database: audit_reports, Table prefix: audit_logs. Schedule: None (run on demand). Tạo xong, chọn Run crawler và đợi trạng thái Succeeded. Cấu hình Amazon Athena AWS Console → Athena. Settings (góc phải) → Query result location: s3://audit-demo-query-results/. Trong Query Editor, chọn database audit_reports. Kiểm tra table: SELECT * FROM \u0026ldquo;audit_reports\u0026rdquo;.\u0026ldquo;audit_logsaudit_demo_logs\u0026rdquo; LIMIT 5;\nXác nhận kết quả Vào S3 audit-demo-query-results/Unsaved -\u0026gt; Kiểm tra file "
+},
+{
+	"uri": "//localhost:1313/vi/7-quicksight/",
+	"title": "Investigation Tools với Amazon QuickSight",
+	"tags": [],
+	"description": "",
+	"content": "Amazon QuickSight Bạn cần tạo 1 account Quicksight để thử hiện demo này\nCấp quyền cho QuickSight truy cập dữ liệu Trong QuickSight Home, click Manage QuickSight → Security \u0026amp; permissions. Phần QuickSight access to AWS services → click Manage → tick chọn Athena**** → Save. Phần QuickSight access to AWS services → click Select S3 buckets → chọn audit-demo-logs -\u0026gt; và bật ô “Write permission for Athena Workgroup”. -\u0026gt; Save. QuickSight bây giờ có quyền chạy query lên Athena và đọc kết quả trong S3. Xây dựng Analysis \u0026amp; Visuals Từ QuickSight Home → click Datasets (menu trái) → New dataset. Chọn Athena → Connecy.\nĐiền Data source name: AuditLogsAthena → Create data source.\nTrong màn hình chọn dữ liệu:\nDatabase: audit_reports\nTable: audit_logsaudit_demo_logs\nClick Select → sẽ thấy preview bảng.\nBật Import to SPICE for quicker analytics → Visualize.\nXây dựng Analysis \u0026amp; Visuals. Vẽ Timeline Events: Ở pane Visuals, click nút + ADD → chọn Add visual. Kéo trường timestamp từ pane Data vào khu vực X axis trong pane Field wells. Chart sẽ vẽ số events theo thời gian. Vẽ Heatmap User Activity: Click + ADD → Add visual. Chọn icon Heat map. Trong Field wells: Kéo user vào Rows. Kéo timestamp vào Columns → click mũi tên bên phải và chuyển Date granularity sang Day. Kéo Count vào Color intensity. Bảng heatmap sẽ hiển thị mật độ event của từng user theo ngày, với màu đậm nhạt thể hiện số lượng. Vẽ Vẽ Top Users:\nClick + ADD → Add visual. Chọn icon Horizontal bar chart.\nTrong Field wells:\nKéo user vào Category. Kéo Count vào Value. Thêm Filter theo action.\nSau khi đã vẽ xong các visual, click Save rồi đặt tên AuditTrailInvestigation.\nXuất bản Trong Analysis, click Publish dashboard.\nDashboard name: Audit Trail Investigation.\n"
+},
+{
+	"uri": "//localhost:1313/vi/8-cloudwatch/",
+	"title": "Monitoring &amp; Alerts qua Amazon CloudWatch",
+	"tags": [],
+	"description": "",
+	"content": "Amazon CloudWatch Khi Lambda audit log in ra các message chứa từ khoá “Error”, CloudWatch sẽ tự đếm, và nếu vượt ngưỡng sẽ tự động gửi cảnh báo qua email/Slack.\nTạo Metric Filter Vào CloudWatch Logs\nAWS Console → CloudWatch → bên trái chọn Logs → Log groups. Chọn log group của Lambda audit\nClick vào /aws/lambda/AuditLoggerDemo. Tạo metric filter\nMở tab Metric filters → click Create metric filter. Trong ô Filter pattern -\u0026gt; chọn ERROR. Đặt tên \u0026amp; cấu hình metric Filter name: AuditErrorFilter Metric namespace: AuditDemo Metric name: ErrorCount Metric value: 1 Click Next → Create filter. Tạo Alarm Vào CloudWatch Alarms AWS Console → Services → CloudWatch → Alarms → All alarms → Create alarm. Chọn metric: chọn metric có tên AuditErrorFilter. Cấu hình: Statistic: Sum Period: 5 minutes Threshold type: Static Whenever ErrorCount \u0026gt;= 5 For: 1 consecutive period Click Next. Tên Alarm: Alarm name: HighErrorAuditAlert Description: \u0026hellip; Click Next. Cấu hình hành động: Send notification to: Topic name: AuditAlertsTopic Display name: Audit Alerts Subscription protocol: tranleminhhieu.it@gmail.com (Mail google). Click Next -\u0026gt; Create alarm. Kiểm thử Alarm Quan sát trạng thái khi gây lỗi ở Lambda nó sẽ báo từ trạng thái OK sang In alarm. Kiểm tra email để nhận được thông báo. "
+},
+{
+	"uri": "//localhost:1313/vi/9-operationalprocedures/",
+	"title": "Operational Procedures",
+	"tags": [],
+	"description": "",
+	"content": "Operational Procedures Bảo đảm log của bạn được giữ đúng thời hạn (retention), có bản sao dự phòng (backup) và có quy trình xử lý khi có sự cố (SOP).\nCấu hình Log Retention Vào CloudWatch Logs\nAWS Console → CloudWatch → bên trái chọn Logs → Log groups. Chọn log group của Lambda audit Click vào /aws/lambda/AuditLoggerDemo. Click Actions → Edit retention. Tuỳ chọn ( ở đây em chọn 7 day) → Save. S3 Object Lock\nAWS Console → S3 → click vào bucket audit-demo-logs. Sang tab Properties → kéo xuống Object lock → click Edit Chọn Retention mode = Compliance (bất biến), Retention period = 10 days → Save. Backup \u0026amp; Recovery Tạo Backup vault\nConsole: AWS Backup → Backup vaults → Create backup vault → Name = AuditBackupVault. Tạo Backup plan\nConsole → AWS Backup → Backup plans → Create backup plan → Build a new plan. Plan name: AuditBackupPlan Frequency: Daily at 00:00 Retention: 7 days Click Create plan. Gán resource cho plan\nConsole: Chọn AuditBackupPlan → Assign resources → Resource type = S3 → ARN = arn:aws:s3:::audit-demo-logs → Assign. SOP xử lý sự cố Proof dữ liệu (S3 Object Lock)\nDùng CLI liệt kê version: aws s3api list-object-versions \u0026ndash;bucket audit-demo-logs \u0026ndash;prefix logs/\nKiểm tra xem có version nào bị xóa hay overwritten trái phép không. Rebuild dashboard QuickSight\nQuickSight → Datasets → chọn AuditLogsAthena → click Refresh → chờ SPICE import → Visualize để dashboard cập nhật dữ liệu mới.\nVới bước này, chúng ta đã thiết lập được retention, backup/recovery và quy trình xử lý sự cố cho hệ thống audit, đảm bảo nó luôn an toàn, có thể phục hồi và vận hành suôn sẻ.\n"
+},
+{
+	"uri": "//localhost:1313/vi/10-aws-artifact/",
+	"title": "Legal Coordination với AWS Artifact",
+	"tags": [],
+	"description": "",
+	"content": "AWS Artifact Thu thập các báo cáo compliance (như SOC 2, ISO 27001, GDPR) từ AWS Artifact để đối chiếu và chứng minh hệ thống audit của bạn đáp ứng tiêu chuẩn pháp lý.\nVào AWS Artifact AWS Console → Services → Security, Identity, \u0026amp; Compliance → Artifact. Trên thanh tab, chọn Reports. Tải về các báo cáo Trong tab Reports: Chọn SOC 2, ISO 27001 rồi Download (PDF). Lưu file PDF vào local folder của dự án. Đối chiếu yêu cầu (Gap Analysis) Mở file PDF SOC 2 Xác định yêu cầu về logging, monitoring, retention. Ghi lại mapping giữa tiêu chuẩn và tính năng triển khai. Tập hợp chứng cứ Audit Trail CloudWatch Logs Export S3 Version List Athena Query Results Snapshot QuickSight Dashboard Compliance PDFs Chuẩn bị nộp regulator Đóng gói file. Với bước này, chúng ta đã hoàn thiện vòng đời audit từ kỹ thuật (ghi log, bất biến, báo cáo, dashboard, cảnh báo, SOP) đến chứng cứ pháp lý.\n"
+},
+{
+	"uri": "//localhost:1313/vi/11-clean-resource/",
+	"title": "Clean Resources",
+	"tags": [],
+	"description": "",
+	"content": "Clean Resources Loại bỏ hết EC2, VPC, Lambda, S3, OpenSearch, Glue, Athena, Backup, CloudWatch, SNS, EventBridge… đã dùng trong demo.\nXóa EC2 \u0026amp; Networking Terminate EC2 Instance\nVào AWS Console → EC2 → Instances. Tích chọn AuditDemo-Server → Actions (ở trên) → Instance state → Terminate instance → xác nhận Terminate. Xóa Key Pair\nEC2 → Key Pairs (menu bên trái) → chọn audit-demo-key → Actions → Delete key pair → Delete. Xóa Internet Gateway\nChọn AuditDemo-IGW → Actions → Detach from VPC → xác nhận → sau đó Actions → Delete internet gateway → Delete. Xóa Route Table\nVPC → Route Tables → chọn AuditDemo-RT → Actions → Delete route table → Delete. Xóa Subnets\nVPC → Subnets → lần lượt chọn AuditDemo-PublicSubnet và AuditDemo-PublicSubnet2 → mỗi subnet Actions → Delete subnet → Delete. Xóa VPC\nVPC → Your VPCs → chọn AuditDemo-VPC → Actions → Delete VPC → Delete. Xóa S3 Buckets Empty \u0026amp; Delete bucket audit-demo-logs\nAWS Console → S3 → Buckets → chọn audit-demo-logs. Trên tab Overview, click Empty bucket → nhập tên bucket → Empty. Sau khi xong, click Delete → nhập tên → Delete bucket. Empty \u0026amp; Delete bucket audit-demo-query-results\nS3 → chọn bucket → Empty bucket → xác nhận → sau đó Delete. Xóa Glue, Athena \u0026amp; Backup Xóa Glue crawler\nAWS Console → AWS Glue → Crawlers → chọn AuditLogsS3Crawler → Action → Delete crawler → Delete. Xóa Glue database\nGlue → Data Catalog → Databases → chọn audit_reports → Action → Delete database → Delete. Xóa Athena saved queries\nAWS Console → Athena → chọn tab Saved queries → click tên query lưu DailyAuditReport → Actions → Delete query → Delete. Xóa AWS Backup plan \u0026amp; vault\nAWS Console → AWS Backup → Backup plans → chọn AuditBackupPlan → Actions → Delete backup plan → Delete. Backup → Backup vaults → chọn AuditBackupVault → Actions → Delete backup vault → Delete. Xóa Lambda \u0026amp; IAM Xóa Lambda function\nAWS Console → Lambda → Functions → chọn AuditLoggerDemo → Actions → Delete function → xác nhận Delete. Xóa IAM Role của Lambda\nConsole → IAM → Roles → tìm AuditLoggerLambdaRole → click vào role → tab Permissions → nếu có inline policy click Delete inline policy để xóa → trở lại trang role → Role actions → Delete role → xác nhận Delete. Xóa IAM Role của Glue Crawler\nIAM → Roles → chọn AWSGlueServiceRole-AuditLogsS3Crawler → Role actions → Delete role → Delete. Xóa SNS topic\nAWS Console → SNS → Topics → chọn AuditAlertsTopic → Actions → Delete topic → Delete. Xóa EventBridge rule\nConsole → EventBridge → Rules → chọn rule DailyAuditReportRule → Actions → Remove targets → tick target → Remove → rồi Actions → Delete rule → Delete. Xóa OpenSearch Domain AWS Console → OpenSearch Service → Domains → chọn audit-trail-demo → Actions → Delete domain → nhập tên domain → Delete. Xóa CloudWatch Resources Xóa Metric filter\nCloudWatch → Logs → Log groups → chọn /aws/lambda/AuditLoggerDemo → tab Metric filters → chọn AuditErrorFilter → Actions → Delete filter. Xóa Alarm\nCloudWatch → Alarms → All alarms → chọn HighErrorAuditAlert → Actions → Delete → xác nhận. Xóa Log group\nCloudWatch → Logs → Log groups → chọn /aws/lambda/AuditLoggerDemo → Actions → Delete log group → Delete. Xóa QuickSight Artifacts\nQuickSight → Dashboards → tích chọn Audit Trail Investigation → Delete → Delete.\nQuickSight → Analyses → chọn AuditTrailInvestigation → Delete → Delete.\nQuickSight → Datasets → chọn AuditLogsAthena → Delete → Delete.\n"
+},
+{
+	"uri": "//localhost:1313/vi/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]
