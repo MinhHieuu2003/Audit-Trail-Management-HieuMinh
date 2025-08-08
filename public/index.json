@@ -84,18 +84,18 @@
 	"content": "Create Private Subnet Click Internet Gateways. Configure Internet Gateways. In the Name tag, enter AuditDemo-IGW. Click Create internet gateway. Confirm successful creation of Internet Gateway Confirm successful creation of Internet Gateway Connect to VPC\n4. Attach Internet Gateway to VPC\nClick Actions Select Attach to AuditDemo-VPC Select VPC ASG from the list (VPC ID will be filled automatically) Click Attach internet gateway Create Route Tables Create Route Table in Amazon VPC\nGo to the VPC interface Select Route Tables from the left menu Click Create route table Configure Route Table Name: AuditDemo-RT VPC: AuditDemo-VPC Click Create route table In the Route Table Click Edit Routes → Add route Destination: 0.0.0.0/0 Target: Internet Gateway -\u0026gt; igw-(AuditDemo-IGW) Click Save routes "
 },
 {
+	"uri": "//localhost:1313/4-s3log/",
+	"title": "Implementing Immutable Logging with (AWS S3)",
+	"tags": [],
+	"description": "",
+	"content": "With Session Manager, we can view the history of connections to instances through Session history. However, we have not seen the details of the commands used in a session.\nIn this section, we will proceed to create an S3 bucket and configure the session logs feature to see the details of the commands used in the session.\nContent: Update IAM Role Create S3 Bucket Create S3 Gateway endpoint Configure Session logs "
+},
+{
 	"uri": "//localhost:1313/2-prerequiste/2.1-createec2/2.1.4-createsecgroup/",
 	"title": "Create Security Groups",
 	"tags": [],
 	"description": "",
 	"content": "Create Security Groups In this step, we will create the security groups used for our instances. As you can see, these security groups do not need to open traditional ports for SSH (port 22) or Remote Desktop (port 3389).\nCreate a security group for the Linux instance in the public subnet Go to the VPC service management interface Click Security Group. Click Create security group. 2. Click Create security group\nIn the Security group name field, enter AuditDemo-SG. In the Description field, enter AuditDemo. In the VPC field, select AuditDemo-VPC. Set Inbound Rules: SSH (TCP 22) source My IP. HTTPS (TCP 443) source 0.0.0.0/0 Outbound: Keep the default All traffic Click Create security group. This completes the creation of the necessary security groups for EC2 instances and the VPC Endpoint. "
-},
-{
-	"uri": "//localhost:1313/4-s3log/",
-	"title": "Manage session logs",
-	"tags": [],
-	"description": "",
-	"content": "With Session Manager, we can view the history of connections to instances through Session history. However, we have not seen the details of the commands used in a session.\nIn this section, we will proceed to create an S3 bucket and configure the session logs feature to see the details of the commands used in the session.\nContent: Update IAM Role Create S3 Bucket Create S3 Gateway endpoint Configure Session logs "
 },
 {
 	"uri": "//localhost:1313/5-portfwd/",
