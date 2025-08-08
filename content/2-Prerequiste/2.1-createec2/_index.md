@@ -22,7 +22,5 @@ To learn how to create VPCs with public/private subnets, you can refer to the la
 ### Contents
   - [Create VPC](2.1.1-createvpc/)
   - [Create Public subnet](2.1.2-createpublicsubnet/)
-  - [Create Private subnet](2.1.3-createprivatesubnet/)
-  - [Create security group](2.1.4-createsecgroup/)
-  - [Create public Linux server](2.1.5-createec2linux/)
-  - [Create private Windows server](2.1.6-createec2windows/)
+  - [Create Internet Gateways](2.1.3-createprivatesubnet/)
+  - [Create Security Group](2.1.4-createsecgroup/)
